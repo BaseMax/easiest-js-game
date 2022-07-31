@@ -69,7 +69,7 @@ document.addEventListener("keypress", (e) => {
     lastKeys.push(e.key);
     if (lastKeys.length > 3) lastKeys.shift();
     if (lastKeys.join("") === "max") {
-        if (playing) alert("You are already a max player!");
+        if (playing === false) alert("You are already a max player!");
         else {
             alert("You are a cheater!");
             playing = false;
