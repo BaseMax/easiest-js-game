@@ -5,8 +5,19 @@ const score = document.getElementById("scoreSpan")
 
 // Variable
 let counter = 0;
+let scores = [];
 
-// Function
+// Functions
+const loadScores = () => {
+    scores = JSON.parse(localStorage.getItem("scores"));
+    if (scores === null) scores = [];
+};
+
+const saveNewScore = () => {
+    scores.push(counter);
+    localStorage.setItem("scores", JSON.stringify(scores));
+};
+
 const jump = () => {
     if (character.classList === "animate") return;
     character.classList.add("animate");
@@ -22,9 +33,17 @@ const timer = setInterval(() => {
     const blockLeft = parseInt( window.getComputedStyle(block).getPropertyValue("left") );
 
     if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
+        const score_max = Math.max(...scores);
+
+        saveNewScore();
         block.style.animation = "none";
         clearInterval(timer);
-        alert("Game score: " + Math.floor(counter / 100));
+
+        if (counter > score_max) {
+            alert("New RANK! Game score: " + Math.floor(counter / 100));
+        } else {
+            alert("Game score: " + Math.floor(counter / 100));
+        }
         counter = 0;
         location.reload();
     } else {
@@ -33,7 +52,11 @@ const timer = setInterval(() => {
     }
 }, 10);
 
-// Event
+// Events
+window.addEventListener("load", () => {
+    loadScores();
+});
+
 document.addEventListener("keydown", (e) => {
     if (e.keyCode === 32) jump();
 });
