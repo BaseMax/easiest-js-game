@@ -1,7 +1,7 @@
 // Const variables, elements
 const block = document.querySelector("#block");
+const score = document.getElementById("scoreSpan");
 const character = document.querySelector("#character");
-const score = document.getElementById("scoreSpan")
 
 // Variable
 let counter = 0;
@@ -58,5 +58,5 @@ window.addEventListener("load", () => {
 });
 
 document.addEventListener("keydown", (e) => {
-    if (e.keyCode === 32) jump();
+    if (e.key === "ArrowUp" || e.keyCode === 32) jump();
 });
