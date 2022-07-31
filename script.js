@@ -1,11 +1,15 @@
-// Const variables, elements
+// Elements
 const block = document.querySelector("#block");
 const score = document.getElementById("scoreSpan");
 const character = document.querySelector("#character");
 
+// Const variable
+const lastKeys = [];
+
 // Variable
 let counter = 0;
 let scores = [];
+let playing = true;
 
 // Functions
 const loadScores = () => {
@@ -32,7 +36,7 @@ const timer = setInterval(() => {
     const characterTop = parseInt( window.getComputedStyle(character).getPropertyValue("top") );
     const blockLeft = parseInt( window.getComputedStyle(block).getPropertyValue("left") );
 
-    if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
+    if (playing && blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
         const score_max = Math.max(...scores);
 
         saveNewScore();
@@ -59,4 +63,13 @@ window.addEventListener("load", () => {
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowUp" || e.keyCode === 32) jump();
+});
+
+document.addEventListener("keypress", (e) => {
+    lastKeys.push(e.key);
+    if (lastKeys.length > 3) lastKeys.shift();
+    if (lastKeys.join("") === "max") {
+        alert("You are a cheater!");
+        playing = false;
+    }
 });
