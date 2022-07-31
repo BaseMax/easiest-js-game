@@ -32,3 +32,8 @@ const timer = setInterval(() => {
         score.innerHTML = Math.floor(counter / 100);
     }
 }, 10);
+
+// Event
+document.addEventListener("keydown", (e) => {
+    if (e.keyCode === 32) jump();
+});
