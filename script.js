@@ -17,14 +17,16 @@ const jump = () => {
 };
 
 // Init, timer
-setInterval(() => {
+const timer = setInterval(() => {
     const characterTop = parseInt( window.getComputedStyle(character).getPropertyValue("top") );
     const blockLeft = parseInt( window.getComputedStyle(block).getPropertyValue("left") );
 
     if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
         counter = 0;
         block.style.animation = "none";
+        clearInterval(timer);
         alert("Game score: " + Math.floor(counter / 100));
+        location.reload();
     } else {
         counter++;
         score.innerHTML = Math.floor(counter / 100);
