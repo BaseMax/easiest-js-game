@@ -22,10 +22,10 @@ const timer = setInterval(() => {
     const blockLeft = parseInt( window.getComputedStyle(block).getPropertyValue("left") );
 
     if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
-        counter = 0;
         block.style.animation = "none";
         clearInterval(timer);
         alert("Game score: " + Math.floor(counter / 100));
+        counter = 0;
         location.reload();
     } else {
         counter++;
