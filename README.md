@@ -1,3 +1,6 @@
 # Easiest JS Game
 
-![Easiest JS Game](preview.jpg)
+**Demo:** https://basemax.github.io/easiest-js-game/
+
+[![Easiest JS Game](preview.jpg)](https://basemax.github.io/easiest-js-game/)
+
